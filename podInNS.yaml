@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: test
+    # set up istio inject sidecar
+    # labels:
+    #     istio-injection: "enabled"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  namespace: test  # create pod in specific namespace
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: busybox:1.28
+    command: ['sh', '-c', 'echo The app is running! && sleep 300']
+  # add another container
+  #- name: myapp-container2
+  #  image: busybox:1.28
+  #  command: ['sh', '-c', 'echo The app is running! && sleep 300']
+
